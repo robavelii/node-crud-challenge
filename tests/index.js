@@ -1,4 +1,4 @@
-const app = require('../index');
+const app = require('../src/index');
 const axios = require('axios');
 
 const assert = require('assert').strict;
@@ -45,35 +45,35 @@ describe("Test Person CRUD API", function () {
     it("Test Post Validation All empty", async function () {
         let err;
         try {
-            
+
             let res = await axios.post('http://localhost:3000/person', {})
-        } catch(e) {
+        } catch (e) {
             err = e;
         }
         console.log(err.response.data);
         assert.equal(err?.response?.status, 400)
 
-    }); 
+    });
 
     it("Test Post Validation name empty", async function () {
         let err;
         try {
-            
-            let res = await axios.post('http://localhost:3000/person', {age: 26, hobbies: []})
-        } catch(e) {
+
+            let res = await axios.post('http://localhost:3000/person', { age: 26, hobbies: [] })
+        } catch (e) {
             err = e;
         }
         console.log(err.response.data);
         assert.equal(err?.response?.status, 400)
 
-    }); 
+    });
 
     it("Test Post Validation age empty", async function () {
         let err;
         try {
-            
-            let res = await axios.post('http://localhost:3000/person', {name: 'sam', hobbies: []})
-        } catch(e) {
+
+            let res = await axios.post('http://localhost:3000/person', { name: 'sam', hobbies: [] })
+        } catch (e) {
             err = e;
         }
         console.log(err.response.data);
@@ -84,39 +84,39 @@ describe("Test Person CRUD API", function () {
     it("Test Post Validation age number", async function () {
         let err;
         try {
-            
-            let res = await axios.post('http://localhost:3000/person', {name: 'sam', age: 'bad', hobbies: []})
-        } catch(e) {
+
+            let res = await axios.post('http://localhost:3000/person', { name: 'sam', age: 'bad', hobbies: [] })
+        } catch (e) {
             err = e;
         }
         console.log(err?.response?.data);
         assert.equal(err?.response?.status, 400)
 
     });
-    
+
     it("Test Post Validation hobbies empty", async function () {
         let err;
         try {
-            
-            let res = await axios.post('http://localhost:3000/person', {name: 'sam', age: 21})
-        } catch(e) {
+
+            let res = await axios.post('http://localhost:3000/person', { name: 'sam', age: 21 })
+        } catch (e) {
             err = e;
         }
         assert.equal(err?.response?.status, 400)
 
     });
-    
+
     it("Test Post Validation hobbies array", async function () {
         let err;
         try {
-            
-            let res = await axios.post('http://localhost:3000/person', {name: 'sam', age: 21, hobbies: 'fighting'})
-        } catch(e) {
+
+            let res = await axios.post('http://localhost:3000/person', { name: 'sam', age: 21, hobbies: 'fighting' })
+        } catch (e) {
             err = e;
         }
         assert.equal(err?.response?.status, 400)
 
-    }); 
+    });
 
 
 
